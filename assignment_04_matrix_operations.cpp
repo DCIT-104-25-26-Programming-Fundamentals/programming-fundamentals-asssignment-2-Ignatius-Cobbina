@@ -57,11 +57,108 @@
 //
 
 // =============================================================================
-// YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
-// =============================================================================
-
 #include <iostream>
 #include <iomanip>
-#include <string>
 using namespace std;
+
+void readMatrix(int matrix[10][10], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << "Enter element [" << i << "][" << j << "]: ";
+            cin >> matrix[i][j];
+        }
+    }
+}
+
+void printMatrix(int matrix[10][10], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << setw(4) << matrix[i][j];
+        }
+        cout << endl;
+    }
+}
+
+void transposeMatrix(int matrix[10][10], int rows, int cols, int result[10][10]) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result[j][i] = matrix[i][j];
+        }
+    }
+}
+
+void addMatrices(int A[10][10], int B[10][10], int rows, int cols, int result[10][10]) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result[i][j] = A[i][j] + B[i][j];
+        }
+    }
+}
+
+void multiplyMatrices(int A[10][10], int B[10][10], int rowsA, int colsA, int rowsB, int colsB, int result[10][10]) {
+    for (int i = 0; i < rowsA; i++) {
+        for (int j = 0; j < colsB; j++) {
+            result[i][j] = 0;
+            for (int k = 0; k < colsA; k++) {
+                result[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+
+int main() {
+    int A[10][10], B[10][10], result[10][10];
+    int rows, cols;
+
+    cout << "=== Part A: Transpose ===" << endl;
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    cout << "Enter number of columns: ";
+    cin >> cols;
+    readMatrix(A, rows, cols);
+    cout << "\nOriginal Matrix:\n";
+    printMatrix(A, rows, cols);
+    transposeMatrix(A, rows, cols, result);
+    cout << "\nTransposed Matrix:\n";
+    printMatrix(result, cols, rows);
+
+    cout << "\n=== Part B: Add Two Matrices ===" << endl;
+    cout << "Enter number of rows: ";
+    cin >> rows;
+    cout << "Enter number of columns: ";
+    cin >> cols;
+    cout << "Matrix A:\n";
+    readMatrix(A, rows, cols);
+    cout << "Matrix B:\n";
+    readMatrix(B, rows, cols);
+    addMatrices(A, B, rows, cols, result);
+    cout << "\nSum of Matrices:\n";
+    printMatrix(result, rows, cols);
+
+    int rowsA, colsA, rowsB, colsB;
+    cout << "\n=== Part C: Multiply Two Matrices ===" << endl;
+    cout << "Enter rows for Matrix A: ";
+    cin >> rowsA;
+    cout << "Enter cols for Matrix A: ";
+    cin >> colsA;
+    readMatrix(A, rowsA, colsA);
+    cout << "Enter rows for Matrix B: ";
+    cin >> rowsB;
+    cout << "Enter cols for Matrix B: ";
+    cin >> colsB;
+    if (colsA != rowsB) {
+        cout << "Error: Cannot multiply, incompatible dimensions." << endl;
+        return 0;
+    }
+    readMatrix(B, rowsB, colsB);
+    multiplyMatrices(A, B, rowsA, colsA, rowsB, colsB, result);
+    cout << "\nProduct of Matrices:\n";
+    printMatrix(result, rowsA, colsB);
+
+    return 0;
+}
+
+// =============================================================================
+
+
 
