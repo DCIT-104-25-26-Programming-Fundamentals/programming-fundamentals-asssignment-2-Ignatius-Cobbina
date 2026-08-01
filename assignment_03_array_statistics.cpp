@@ -36,9 +36,67 @@
 
 //
 // =============================================================================
-// YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
-// =============================================================================
-
 #include <iostream>
 using namespace std;
+
+int calcSum(int numbers[], int n) {
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total += numbers[i];
+    }
+    return total;
+}
+
+double calcAverage(int numbers[], int n) {
+    return (double)calcSum(numbers, n) / n;
+}
+
+int calcMax(int numbers[], int n) {
+    int maximum = numbers[0];
+    for (int i = 1; i < n; i++) {
+        if (numbers[i] > maximum) {
+            maximum = numbers[i];
+        }
+    }
+    return maximum;
+}
+
+int calcMin(int numbers[], int n) {
+    int minimum = numbers[0];
+    for (int i = 1; i < n; i++) {
+        if (numbers[i] < minimum) {
+            minimum = numbers[i];
+        }
+    }
+    return minimum;
+}
+
+int main() {
+    int n;
+    cout << "How many numbers? ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Error: N must be a positive integer." << endl;
+        return 0;
+    }
+
+    int numbers[n];
+    for (int i = 0; i < n; i++) {
+        cout << "Enter number " << i + 1 << ": ";
+        cin >> numbers[i];
+    }
+
+    cout << "\nResults:\n";
+    cout << "Sum:     " << calcSum(numbers, n) << endl;
+    cout << "Average: " << calcAverage(numbers, n) << endl;
+    cout << "Maximum: " << calcMax(numbers, n) << endl;
+    cout << "Minimum: " << calcMin(numbers, n) << endl;
+
+    return 0;
+}
+
+// =============================================================================
+
+
 
