@@ -173,7 +173,7 @@ void menu() {
 
         int choice;
         cin >> choice;
-        cin.ignore(); // clear newline
+        cin.ignore(); 
 
         switch (choice) {
             case 1: addStudent(); break;
